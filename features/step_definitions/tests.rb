@@ -3,7 +3,7 @@ Given /^I have a dumpfile$/ do
 end
 
 When /^i call the script with the dumpfile as an argument$/ do
-  sup-purge supdump
+  puts `./sup-purge supdump`
 end
 
 Then /^i should be able to open the dumpfile$/ do
