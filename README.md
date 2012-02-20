@@ -8,13 +8,16 @@ search index.
 To quote the FAQ:
 
 >Q: How do I delete a message?
+>
 >A: Why delete? Unless it's spam, you might as well just archive it.
 >
 >Q: C'mon, really now!
+>
 >A: Ok, press the 'd' key.
 >
 >Q: But I want to delete it for real, not just add a 'deleted' flag in
 >   the index. I want it gone from disk!
+>
 >A: Currently, for mbox sources, there is a batch deletion tool that
 >   will strip out all messages marked as spam or deleted.
 
@@ -36,4 +39,5 @@ sup-sync --all-sources --all --restore <dumpfile>
 * [sup homepage](http://sup.rubyforge.org/)
 * [development repository](http://gitorious.org/projects/sup)
 * [sup FAQ](http://sup.rubyforge.org/FAQ.txt)
+* [sup wiki](http://sup.rubyforge.org/wiki/wiki.pl)
 * [Xapian](http://xapian.org/)
