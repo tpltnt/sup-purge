@@ -10,4 +10,7 @@ begin
   dump.close
 rescue Errno::ENOENT
   puts "file not found"
+  exit 1
 end
+
+exit 0
