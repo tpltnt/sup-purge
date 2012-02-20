@@ -40,5 +40,6 @@ sup-sync --all-sources --all --restore <dumpfile>
 * [development repository](http://gitorious.org/projects/sup)
 * [sup FAQ](http://sup.rubyforge.org/FAQ.txt)
 * [sup wiki](http://sup.rubyforge.org/wiki/wiki.pl)
+* [maildir specification](http://cr.yp.to/proto/maildir.html)
 * [Xapian](http://xapian.org/)
 * testframework: [Cucumber](http://cukes.info/)
