@@ -33,7 +33,7 @@ cruft does not have to be tolerated.
 rm -rf ~/.sup/xapian;
 sup-sync --all-sources --all --restore <dumpfile>
 ```
-
+* run tests: ```cucumber features/sup-purge.features```
 
 # References
 * [sup homepage](http://sup.rubyforge.org/)
@@ -41,3 +41,4 @@ sup-sync --all-sources --all --restore <dumpfile>
 * [sup FAQ](http://sup.rubyforge.org/FAQ.txt)
 * [sup wiki](http://sup.rubyforge.org/wiki/wiki.pl)
 * [Xapian](http://xapian.org/)
+* testframework: [Cucumber](http://cukes.info/)
