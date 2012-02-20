@@ -4,4 +4,6 @@ Yes, purging means physically deleting them. This will
 most likely break your (xapian) search index.
 
 # References
-* [sup](http://sup.rubyforge.org/)
+* [sup homepage](http://sup.rubyforge.org/)
+* [development repository](http://gitorious.org/projects/sup)
+* [Xapian](http://xapian.org/)
