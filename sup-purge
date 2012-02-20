@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# written 2012 by tpltnt
+# License: GPLv3
+
 if 1 != ARGV.length then
   puts "wrong number of arguments"
   exit 1

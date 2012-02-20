@@ -35,6 +35,9 @@ sup-sync --all-sources --all --restore <dumpfile>
 ```
 * run tests: ```cucumber features/sup-purge.features```
 
+# License
+This code is published under the GPLv3 license.
+
 # References
 * [sup homepage](http://sup.rubyforge.org/)
 * [development repository](http://gitorious.org/projects/sup)
