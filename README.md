@@ -6,6 +6,7 @@ search index.
 
 ## Why?
 To quote the FAQ:
+
 >Q: How do I delete a message?
 >A: Why delete? Unless it's spam, you might as well just archive it.
 >
@@ -21,12 +22,14 @@ There are people who use maildir. Although harddrives are cheap,
 cruft does not have to be tolerated.
 
 ## Hints
-* To back up your index run:
-    sup-dump > <dumpfile>
-  The dumpfile is plain text and can be compressed easily.
+* To back up your index run: 
+```sup-dump > <dumpfile>```
+   The dumpfile is plain text and can be compressed easily.
 * To restore your index run:
-    rm -rf ~/.sup/xapian
-    sup-sync --all-sources --all --restore <dumpfile>
+```
+rm -rf ~/.sup/xapian;
+sup-sync --all-sources --all --restore <dumpfile>
+```
 
 
 # References
