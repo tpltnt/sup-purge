@@ -4,3 +4,10 @@ if 1 != ARGV.length then
   puts "wrong number of arguments"
   exit 1
 end
+
+begin
+  dump = File.open(ARGV[0].to_s)
+  dump.close
+rescue Errno::ENOENT
+  puts "file not found"
+end
