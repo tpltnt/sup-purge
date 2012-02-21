@@ -1,3 +1,4 @@
+# for assert()
 require 'test/unit/assertions'
 World(Test::Unit::Assertions)
 
@@ -11,4 +12,12 @@ end
 
 Then /^i should be able to open the dumpfile$/ do
   assert( system './sup-purge features/step_definitions/supdump' )
+end
+
+When /^I open the file$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^each line should follow a pattern$/ do
+  pending # express the regexp above with the code you wish you had
 end
