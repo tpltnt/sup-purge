@@ -3,7 +3,8 @@ require 'test/unit/assertions'
 World(Test::Unit::Assertions)
 
 Given /^I have a dumpfile$/ do
-  File.exists?("supdump")
+  @dumpfilename = 'features/step_definitions/supdump'
+  assert( File.exists?(@dumpfilename) )
 end
 
 When /^i call the script with the dumpfile as an argument$/ do
