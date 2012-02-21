@@ -18,7 +18,8 @@ Then /^i should be able to open the dumpfile$/ do
 end
 
 When /^I open the file$/ do
-  @dumpfile = File.open("supdump")
+  @dumpfilename = 'features/step_definitions/supdump'
+  @dumpfile = File.open(@dumpfilename)
 end
 
 Then /^each line should follow a pattern$/ do
