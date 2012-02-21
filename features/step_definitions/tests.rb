@@ -8,7 +8,7 @@ end
 
 When /^i call the script with the dumpfile as an argument$/ do
   @dumpfilename = 'features/step_definitions/supdump'
-  system './sup-purge #{dumpfilename}'
+  assert( system './sup-purge #{dumpfilename}' )
 end
 
 Then /^i should be able to open the dumpfile$/ do
