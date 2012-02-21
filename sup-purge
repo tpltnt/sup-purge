@@ -3,17 +3,19 @@
 # written 2012 by tpltnt
 # License: GPLv3
 
-if 1 != ARGV.length then
-  puts "wrong number of arguments"
+if 2 != ARGV.length then
+  puts "usage: sup-purge <dumpfile> <maildir>"
   exit 1
 end
 
 begin
-  dump = File.open(ARGV[0].to_s)
+  dump = File.open(ARGV[1].to_s)
 rescue Errno::ENOENT
   puts "file not found"
   exit 1
 end
+
+# test maildir for being a directory
 
 messagestobedeleted = []
 # iterate over all lines
