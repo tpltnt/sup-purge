@@ -7,7 +7,8 @@ Given /^I have a dumpfile$/ do
 end
 
 When /^i call the script with the dumpfile as an argument$/ do
-  system './sup-purge features/step_definitions/supdump'
+  @dumpfilename = 'features/step_definitions/supdump'
+  system './sup-purge #{dumpfilename}'
 end
 
 Then /^i should be able to open the dumpfile$/ do
@@ -15,7 +16,7 @@ Then /^i should be able to open the dumpfile$/ do
 end
 
 When /^I open the file$/ do
-  pending # express the regexp above with the code you wish you had
+  @dumpfile = File.open("supdump")
 end
 
 Then /^each line should follow a pattern$/ do
