@@ -23,5 +23,13 @@ When /^I open the file$/ do
 end
 
 Then /^each line should follow a pattern$/ do
-  pending # express the regexp above with the code you wish you had
+  @allok = true
+  @dumpfilename = 'features/step_definitions/supdump'
+  @dumpfile = File.open(@dumpfilename)
+  # test each line for the pattern
+  @dumpfile.each do |line|
+    # pattern: random_string@random_string+" "+"("tag1" "tag2" "tagn")"
+    puts line
+  end
+  pending
 end
