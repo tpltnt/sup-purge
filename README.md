@@ -4,6 +4,8 @@ Yes, purging means physically deleting them from your
 maildir. This will most likely break your (xapian)
 search index.
 
+**status:** active
+
 ## Why?
 To quote the FAQ:
 
