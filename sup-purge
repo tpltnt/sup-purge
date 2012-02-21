@@ -20,9 +20,14 @@ messagestobedeleted = []
 dump.each do |line|
   # filter out all sane line
   if nil != line.match(/.*\@.*\s\(.*\)/) then
-      #
+    # match against "deleted" flag
+    if nil != line.match(/deleted/) then
+      # split at "deleted" and get first chunk of chars & add to list of messages
+      messagestobedeleted.push( line.split(/deleted/)[0].split(" ")[0] )
+    end
   end
 end
 
+puts messagestobedeleted.length
 dump.close
 exit 0
