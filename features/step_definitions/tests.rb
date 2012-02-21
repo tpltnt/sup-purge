@@ -27,7 +27,7 @@ Then /^each line should follow a pattern$/ do
   # test each line for the pattern
   @dumpfile.each do |line|
     # pattern: random_string@random_string+" "+"("tag1" "tag2" "tagn")"
-    puts line
+    puts line.match(/.*\@.*\s\(.*\)/)
   end
   pending
 end
