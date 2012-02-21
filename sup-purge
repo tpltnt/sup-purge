@@ -10,10 +10,19 @@ end
 
 begin
   dump = File.open(ARGV[0].to_s)
-  dump.close
 rescue Errno::ENOENT
   puts "file not found"
   exit 1
 end
 
+messagestobedeleted = []
+# iterate over all lines
+dump.each do |line|
+  # filter out all sane line
+  if nil != line.match(/.*\@.*\s\(.*\)/) then
+      #
+  end
+end
+
+dump.close
 exit 0
