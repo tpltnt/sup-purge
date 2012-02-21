@@ -24,10 +24,11 @@ end
 Then /^each line should follow a pattern$/ do
   @allok = true
   @dumpfile = File.open(dumpfilename)
-  # test each line for the pattern
   @dumpfile.each do |line|
-    # pattern: random_string@random_string+" "+"("tag1" "tag2" "tagn")"
-    puts line.match(/.*\@.*\s\(.*\)/)
+    if nil == line.match(/.*\@.*\s\(.*\)/) then
+      @allok = false
+    end
   end
-  pending
+  # since a few wrong indexes are added on purpose, not all must bo ok
+  assert( !@allok )
 end
