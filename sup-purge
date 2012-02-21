@@ -28,6 +28,10 @@ dump.each do |line|
   end
 end
 
-puts messagestobedeleted.length
 dump.close
+
+#TODO:
+# find messages & delete them
+# kill messges from dump
+
 exit 0
