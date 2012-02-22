@@ -9,13 +9,18 @@ if 2 != ARGV.length then
 end
 
 begin
-  dump = File.open(ARGV[1].to_s)
+  dump = File.open(ARGV[0].to_s)
 rescue Errno::ENOENT
   puts "file not found"
   exit 1
 end
 
 # test maildir for being a directory
+if !File.directory?(ARGV[1].to_s) then
+  puts "given maildir is not a directory"
+  exit 1
+end
+
 
 messagestobedeleted = []
 # iterate over all lines
