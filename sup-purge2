@@ -39,13 +39,12 @@ def get_maildirs(supdir)
   supconfig.each do |line|
     maildir = line.split(":sent_source: maildir:")[1]
     if maildir then
-      maildirnames.push(maildir)
-      puts maildirnames
+      maildirnames.push(maildir.strip)
     end
   end
+  maildirnames = maildirnames.uniq
   # test maildir for being a directory
   maildirnames.each do |maildirname|
-    puts maildirname
     if !File.directory?(maildirname) then
       puts "given maildir is not a directory"
       exit 1
