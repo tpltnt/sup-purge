@@ -9,7 +9,7 @@ if 2 != ARGV.length then
 end
 
 begin
-  dump = File.open(ARGV[0].to_s)
+  dump = File.open(ARGV[0].to_s,'r')
 rescue Errno::ENOENT
   puts "file not found"
   exit 1
@@ -51,7 +51,7 @@ end
 
 # save new clean index
 begin
-  tempdump = File.open("tmp.dump")
+  tempdump = File.open('dump.tmp','w')
 rescue Errno::ENOENT
   puts "can't write temporary index"
   exit 1
