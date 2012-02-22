@@ -20,7 +20,7 @@ if !File.directory?(ARGV[1].to_s) then
   puts "given maildir is not a directory"
   exit 1
 end
-
+maildir = ARGV[1].to_s
 
 messagestobedeleted = []
 # iterate over all lines
