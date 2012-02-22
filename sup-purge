@@ -46,6 +46,16 @@ dump.close
 messagestobedeleted.each do |delfile|
   puts File.exists?("#{maildir}/#{delfile}")
 end
-# kill messges from dump
 
-exit 0
+# save new clean index
+begin
+  tempdump = File.open("tmp.dump")
+rescue Errno::ENOENT
+  puts "can't write temporary index"
+  exit 1
+end
+
+remainingmessages.each do |message|
+end
+
+tempdump.close
