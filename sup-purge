@@ -44,7 +44,9 @@ dump.close
 #TODO:
 # find messages & delete them
 messagestobedeleted.each do |delfile|
-  puts File.exists?("#{maildir}/#{delfile}")
+  if File.exists?("#{maildir}/#{delfile}") then
+    puts "#{maildir}/#{delfile} deleted"
+  end
 end
 
 # save new clean index
