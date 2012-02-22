@@ -35,7 +35,7 @@ usage:```sup-purge <dumpfile> <maildir>```
 
 
 ### sup-purge2
-This is the point-and-click version. Give it the sup-config directory and it will do the rest.
+This is the point-and-click version based on "sup-purge". Give it the sup-config directory and it will do the rest.
 
 ## Hints
 * To back up your index run: 
