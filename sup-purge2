@@ -103,13 +103,22 @@ dump.close
 # delete dump
 File.delete(dumpfilename)
 
-exit 0
-
 # find messages & delete them
-messagestobedeleted.each do |delfile|
-  if File.exists?("#{maildir}/#{delfile}") then
-    puts "#{maildir}/#{delfile} deleted"
+# not really good performing algorithm, but works
+maildirnames.each do |maildir|
+  messagestobedeleted.each do |delfile|
+    puts "#{maildir}/---/#{delfile} deleted"
+    if File.exists?("#{maildir}/new/#{delfile}") then
+      puts "#{maildir}/new/#{delfile} deleted"
+    else if File.exists?("#{maildir}/cur/#{delfile}") then
+           puts "#{maildir}/cur/#{delfile} deleted"
+         else if File.exists?("#{maildir}/tmp/#{delfile}")
+                puts "#{maildir}/tmp/#{delfile} deleted"
+              end
+         end
+    end
   end
+
 end
 
 ## --- restore index
