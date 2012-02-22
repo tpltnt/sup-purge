@@ -12,13 +12,13 @@ require 'base64'
 # * *Returns* :
 #   - {File}[http://ruby-doc.org/core-1.9.3/File.html]-object of the dump
 def create_dump(filename)
-  if !system( "sup-dump > #{dumpfilename}" ) then
+  if !system( "sup-dump > #{filename}" ) then
     puts "creating dump failed ..."
     exit 1
   end
 
   begin
-    dumpfile = File.open(dumpfilename,'r')
+    dumpfile = File.open(filename,'r')
   rescue Errno::ENOENT
     puts "dump not found"
     exit 1
@@ -35,9 +35,17 @@ end
 #   - Array of directories
 def get_maildirs(supdir)
   maildirnames = []
-  # :sent_source: maildir:/home/user/.emails/emailname
+  supconfig = File.open("#{supdir}/config.yaml",'r')
+  supconfig.each do |line|
+    maildir = line.split(":sent_source: maildir:")[1]
+    if maildir then
+      maildirnames.push(maildir)
+      puts maildirnames
+    end
+  end
   # test maildir for being a directory
   maildirnames.each do |maildirname|
+    puts maildirname
     if !File.directory?(maildirname) then
       puts "given maildir is not a directory"
       exit 1
@@ -63,14 +71,17 @@ end
 
 ## --- create dump
 dumpfilename = Base64.encode64( Time.now.to_s ).strip + ".supdump"
-dump = create_dump(filename)
+dump = create_dump(dumpfilename)
+
+## --- determine maildirnames
+maildirnames = get_maildirs(supdir)
+
+puts maildirnames
 
 dump.close
 File.delete(dumpfilename)
 exit 0
 
-## --- determine maildirnames
-maildirnames = get_maildirnames(supdir)
 
 # get files to be deleted
 messagestobedeleted = []
