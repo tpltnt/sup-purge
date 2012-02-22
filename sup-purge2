@@ -3,6 +3,8 @@
 # written 2012 by tpltnt
 # License: GPLv3
 
+require 'base64'
+
 if 1 != ARGV.length then
   puts "usage: sup-purge2 <supdir>"
   exit 1
@@ -12,7 +14,7 @@ supdir = ARGV[0].to_s
 #supdir = "~/.sup"
 
 # sanity check for given parameter
-if !File.directory?() then
+if !File.directory?(supdir) then
   puts "given sup-directory is invalid"
   exit 1
 end
@@ -20,15 +22,23 @@ end
 
 
 ## --- create dump
-dumpfilename = ""
-# sup-dump > <dumpfile>
+dumpfilename = Base64.encode64( Time.now.to_s ).strip + ".supdump"
+puts dumpfilename
+if !system( "sup-dump > #{dumpfilename}" ) then
+  puts "creating dump failed ..."
+  exit 1
+end
+File.delete(dumpfilename)
+exit 0
 
 begin
   dump = File.open(dumpfilename,'r')
 rescue Errno::ENOENT
-  puts "file not found"
+  puts "dump not found"
   exit 1
 end
+
+exit 0
 
 ## --- determine maildirnames
 maildirnames = []
