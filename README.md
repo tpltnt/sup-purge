@@ -26,6 +26,17 @@ To quote the FAQ:
 There are people who use maildir. Although harddrives are cheap,
 cruft does not have to be tolerated.
 
+## Two versions?
+Yes, there are two versions.
+
+### sup-purge
+This is the hackish version to be used in scripts.
+usage:```sup-purge <dumpfile> <maildir>```
+
+
+### sup-purge2
+This is the point-and-click version. Give it the sup-config directory and it will do the rest.
+
 ## Hints
 * To back up your index run: 
 ```sup-dump > <dumpfile>```
