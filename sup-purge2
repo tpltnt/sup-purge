@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+
+# written 2012 by tpltnt
+# License: GPLv3
+
+if 1 != ARGV.length then
+  puts "usage: sup-purge2 <supdir>"
+  exit 1
+end
+
+## --- create dump
+dumpfilename = ""
+
+begin
+  dump = File.open(dumpfilename,'r')
+rescue Errno::ENOENT
+  puts "file not found"
+  exit 1
+end
+
+## --- determine maildirnames
+maildirname = ""
+# test maildir for being a directory
+if !File.directory?(ARGV[1].to_s) then
+  puts "given maildir is not a directory"
+  exit 1
+end
+maildir = ARGV[1].to_s
+
+# get files to be deleted
+messagestobedeleted = []
+# iterate over all lines
+dump.each do |line|
+  # filter out all sane line
+  if nil != line.match(/.*\@.*\s\(.*\)/) then
+    # match against "deleted" flag
+    if nil != line.match(/deleted/) then
+      # split at "deleted" and get first chunk of chars & add to list of messages
+      messagestobedeleted.push( line.split(/deleted/)[0].split(" ")[0] )
+    end
+  end
+end
+
+dump.close
+
+# delete dump
+File.delete(dumpfilename)
+
+# find messages & delete them
+messagestobedeleted.each do |delfile|
+  if File.exists?("#{maildir}/#{delfile}") then
+    puts "#{maildir}/#{delfile} deleted"
+  end
+end
+
+#remove .sup/xapian
+#sync indexes
+
