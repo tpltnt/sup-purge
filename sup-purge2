@@ -6,7 +6,11 @@
 require 'base64'
 
 # create dump and take care of everything
-# returns filehandler
+#
+# * *Args* :
+#   - +filename+ -> name of the dump to generate
+# * *Returns* :
+#   - {File}[http://ruby-doc.org/core-1.9.3/File.html]-object of the dump
 def create_dump(filename)
   if !system( "sup-dump > #{dumpfilename}" ) then
     puts "creating dump failed ..."
@@ -22,6 +26,26 @@ def create_dump(filename)
 
   return dumpfile
 end
+
+# determine names of maildirs
+#
+# * *Args* :
+#   - +supdir+ config directory for sup (default: ~/.sup)
+# * *Returns* :
+#   - Array of directories
+def get_maildirs(supdir)
+  maildirnames = []
+  # :sent_source: maildir:/home/user/.emails/emailname
+  # test maildir for being a directory
+  maildirnames.each do |maildirname|
+    if !File.directory?(maildirname) then
+      puts "given maildir is not a directory"
+      exit 1
+    end
+  end
+  return maildirnames
+end
+
 
 # sanity check for given parameter
 if 1 != ARGV.length then
@@ -46,15 +70,7 @@ File.delete(dumpfilename)
 exit 0
 
 ## --- determine maildirnames
-maildirnames = []
-# :sent_source: maildir:/home/user/.emails/js
-# test maildir for being a directory
-maildirnames.each do |maildirname|
-  if !File.directory?(maildirname) then
-    puts "given maildir is not a directory"
-    exit 1
-  end
-end
+maildirnames = get_maildirnames(supdir)
 
 # get files to be deleted
 messagestobedeleted = []
