@@ -62,3 +62,4 @@ This code is published under the GPLv3 license.
 * [maildir specification](http://cr.yp.to/proto/maildir.html)
 * [Xapian](http://xapian.org/)
 * testframework: [Cucumber](http://cukes.info/)
+* [RDoc](http://rdoc.rubyforge.org/RDoc/Markup.html)
