@@ -8,6 +8,17 @@ if 1 != ARGV.length then
   exit 1
 end
 
+supdir = ARGV[0].to_s
+#supdir = "~/.sup"
+
+# sanity check for given parameter
+if !File.directory?() then
+  puts "given sup-directory is invalid"
+  exit 1
+end
+
+
+
 ## --- create dump
 dumpfilename = ""
 # sup-dump > <dumpfile>
@@ -20,13 +31,15 @@ rescue Errno::ENOENT
 end
 
 ## --- determine maildirnames
-maildirname = ""
+maildirnames = []
+# :sent_source: maildir:/home/user/.emails/js
 # test maildir for being a directory
-if !File.directory?(ARGV[1].to_s) then
-  puts "given maildir is not a directory"
-  exit 1
+maildirnames.each do |maildirname|
+  if !File.directory?(maildirname) then
+    puts "given maildir is not a directory"
+    exit 1
+  end
 end
-maildir = ARGV[1].to_s
 
 # get files to be deleted
 messagestobedeleted = []
