@@ -11,14 +11,12 @@ if 1 != ARGV.length then
 end
 
 supdir = ARGV[0].to_s
-#supdir = "~/.sup"
 
 # sanity check for given parameter
 if !File.directory?(supdir) then
   puts "given sup-directory is invalid"
   exit 1
 end
-
 
 
 ## --- create dump
@@ -28,8 +26,6 @@ if !system( "sup-dump > #{dumpfilename}" ) then
   puts "creating dump failed ..."
   exit 1
 end
-File.delete(dumpfilename)
-exit 0
 
 begin
   dump = File.open(dumpfilename,'r')
@@ -38,6 +34,7 @@ rescue Errno::ENOENT
   exit 1
 end
 
+File.delete(dumpfilename)
 exit 0
 
 ## --- determine maildirnames
