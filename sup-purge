@@ -23,6 +23,7 @@ end
 maildir = ARGV[1].to_s
 
 messagestobedeleted = []
+remainingmessages = []
 # iterate over all lines
 dump.each do |line|
   # filter out all sane line
@@ -32,6 +33,9 @@ dump.each do |line|
       # split at "deleted" and get first chunk of chars & add to list of messages
       messagestobedeleted.push( line.split(/deleted/)[0].split(" ")[0] )
     end
+  else
+    # save remaining lines for new index
+    remainingmessages.push(line)
   end
 end
 
@@ -39,6 +43,9 @@ dump.close
 
 #TODO:
 # find messages & delete them
+messagestobedeleted.each do |delfile|
+  puts File.exists?("#{maildir}/#{delfile}")
+end
 # kill messges from dump
 
 exit 0
