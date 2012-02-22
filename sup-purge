@@ -63,9 +63,6 @@ end
 
 tempdump.close
 
-print "deleting temporary files ... "
-if 1 != File.delete('dump.tmp') then
-  print "failed\n"
-  exit 1
-end
-print "done\n"
+exit 0
+# rename dumps
+File.rename('dump.tmp', dump)
