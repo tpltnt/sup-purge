@@ -8,7 +8,7 @@ require 'base64'
 # create dump and take care of everything
 #
 # * *Args* :
-#   - +filename+ -> name of the dump to generate
+#   - +filename+ name of the dump to generate
 # * *Returns* :
 #   - {File}[http://ruby-doc.org/core-1.9.3/File.html]-object of the dump
 def create_dump(filename)
@@ -53,6 +53,27 @@ def get_maildirs(supdir)
   return maildirnames
 end
 
+# determine emails to kill
+#
+# * *Args* :
+#   - +dumpindex+ File-object of the sup-dump
+# * *Returns* :
+#   - Array of emails to delete
+def get_killcandidates(dumpindex)
+  candidates = []
+  # iterate over all lines
+  dumpindex.each do |line|
+    # filter out all sane line
+    if nil != line.match(/.*\@.*\s\(.*\)/) then
+      # match against "deleted" flag
+      if nil != line.match(/deleted/) then
+        # split at "deleted" and get first chunk of chars & add to list of messages
+        candidates.push( line.split(/deleted/)[0].split(" ")[0] )
+      end
+    end
+  end
+  return candidates
+end
 
 # sanity check for given parameter
 if 1 != ARGV.length then
@@ -75,31 +96,14 @@ dump = create_dump(dumpfilename)
 ## --- determine maildirnames
 maildirnames = get_maildirs(supdir)
 
-puts maildirnames
-
-dump.close
-File.delete(dumpfilename)
-exit 0
-
-
 # get files to be deleted
-messagestobedeleted = []
-# iterate over all lines
-dump.each do |line|
-  # filter out all sane line
-  if nil != line.match(/.*\@.*\s\(.*\)/) then
-    # match against "deleted" flag
-    if nil != line.match(/deleted/) then
-      # split at "deleted" and get first chunk of chars & add to list of messages
-      messagestobedeleted.push( line.split(/deleted/)[0].split(" ")[0] )
-    end
-  end
-end
+messagestobedeleted = get_killcandidates(dump)
 
 dump.close
-
 # delete dump
 File.delete(dumpfilename)
+
+exit 0
 
 # find messages & delete them
 messagestobedeleted.each do |delfile|
