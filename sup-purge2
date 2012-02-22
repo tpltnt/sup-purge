@@ -5,6 +5,25 @@
 
 require 'base64'
 
+# create dump and take care of everything
+# returns filehandler
+def create_dump(filename)
+  if !system( "sup-dump > #{dumpfilename}" ) then
+    puts "creating dump failed ..."
+    exit 1
+  end
+
+  begin
+    dumpfile = File.open(dumpfilename,'r')
+  rescue Errno::ENOENT
+    puts "dump not found"
+    exit 1
+  end
+
+  return dumpfile
+end
+
+# sanity check for given parameter
 if 1 != ARGV.length then
   puts "usage: sup-purge2 <supdir>"
   exit 1
@@ -12,7 +31,6 @@ end
 
 supdir = ARGV[0].to_s
 
-# sanity check for given parameter
 if !File.directory?(supdir) then
   puts "given sup-directory is invalid"
   exit 1
@@ -21,19 +39,9 @@ end
 
 ## --- create dump
 dumpfilename = Base64.encode64( Time.now.to_s ).strip + ".supdump"
-puts dumpfilename
-if !system( "sup-dump > #{dumpfilename}" ) then
-  puts "creating dump failed ..."
-  exit 1
-end
+dump = create_dump(filename)
 
-begin
-  dump = File.open(dumpfilename,'r')
-rescue Errno::ENOENT
-  puts "dump not found"
-  exit 1
-end
-
+dump.close
 File.delete(dumpfilename)
 exit 0
 
