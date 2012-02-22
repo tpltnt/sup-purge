@@ -58,7 +58,7 @@ rescue Errno::ENOENT
 end
 
 remainingmessages.each do |message|
-  puts message
+  tempdump.puts message
 end
 
 tempdump.close
