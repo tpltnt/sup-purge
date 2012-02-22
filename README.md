@@ -31,11 +31,14 @@ Yes, there are two versions.
 
 ### sup-purge
 This is the hackish version to be used in scripts.
-usage:```sup-purge <dumpfile> <maildir>```
+
+**Usage:**```sup-purge <dumpfile> <maildir>```
 
 
 ### sup-purge2
 This is the point-and-click version based on "sup-purge". Give it the sup-config directory and it will do the rest.
+
+**Usage:**```sup-purge2 <sup-dir>```
 
 ## Hints
 * To back up your index run: 
