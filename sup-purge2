@@ -10,6 +10,7 @@ end
 
 ## --- create dump
 dumpfilename = ""
+# sup-dump > <dumpfile>
 
 begin
   dump = File.open(dumpfilename,'r')
@@ -53,6 +54,7 @@ messagestobedeleted.each do |delfile|
   end
 end
 
+## --- restore index
+# rm -rf ~/.sup/xapian; sup-sync --all-sources --all --restore <dumpfile>
 #remove .sup/xapian
 #sync indexes
-
