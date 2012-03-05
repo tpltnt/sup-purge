@@ -4,7 +4,11 @@ Yes, purging means physically deleting them from your
 maildir. This will most likely break your (xapian)
 search index.
 
-**status:** active
+**status:** abandoned
+
+Looks like i made a wrong assumption about how the mail is
+processed locally. Until i figured it out (and the itch is still
+there) i abandon this project.
 
 ## Why?
 To quote the FAQ:
