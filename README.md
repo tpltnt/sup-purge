@@ -54,6 +54,7 @@ rm -rf ~/.sup/xapian;
 sup-sync --all-sources --all --restore <dumpfile>
 ```
 * run tests: ```cucumber features/sup-purge.features```
+* the dump saves message-id, not filename
 
 # License
 This code is published under the GPLv3 license.
