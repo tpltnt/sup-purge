@@ -58,7 +58,7 @@ end
 # * *Args* :
 #   - +dumpindex+ File-object of the sup-dump
 # * *Returns* :
-#   - Array of emails to delete
+#   - Array of message-ids to delete
 def get_killcandidates(dumpindex)
   candidates = []
   # iterate over all lines
@@ -73,6 +73,13 @@ def get_killcandidates(dumpindex)
     end
   end
   return candidates
+end
+
+# match the message id to an actual filename (on disk)
+#
+# * *Args* :
+#    - +messageids+ Array of Message-IDs to match
+def match_messageid_to_filename(messageids)
 end
 
 # sanity check for given parameter
@@ -106,8 +113,7 @@ File.delete(dumpfilename)
 # find messages & delete them
 # not really good performing algorithm, but works
 maildirnames.each do |maildir|
-  messagestobedeleted.each do |delfile|
-    puts "#{maildir}/---/#{delfile} deleted"
+  messagestobedeleted.each do |messageid|
     if File.exists?("#{maildir}/new/#{delfile}") then
       puts "#{maildir}/new/#{delfile} deleted"
     else if File.exists?("#{maildir}/cur/#{delfile}") then
