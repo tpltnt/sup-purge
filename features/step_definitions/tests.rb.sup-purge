@@ -5,20 +5,16 @@ World(Test::Unit::Assertions)
 
 dumpfilename = 'features/step_definitions/supdump'
 
-Given /^I have a sup\-dir$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-When /^i call the script with the sup\-dir as an argument$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^i should be able to find the maildirs$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
 Given /^I have a dumpfile$/ do
-  pending # express the regexp above with the code you wish you had
+  assert( File.exists?(dumpfilename) )
+end
+
+When /^i call the script with the dumpfile as an argument$/ do
+  assert( system "./sup-purge #{dumpfilename}" )
+end
+
+Then /^i should be able to open the dumpfile$/ do
+  assert( system "./sup-purge #{dumpfilename}" )
 end
 
 When /^I open the file$/ do

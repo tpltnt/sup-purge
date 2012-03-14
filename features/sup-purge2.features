@@ -1,0 +1,11 @@
+Feature: Purge flagged emails from maildir
+
+Scenario: Find maildirs
+          Given I have a sup-dir
+          When i call the script with the sup-dir as an argument
+          Then i should be able to find the maildirs
+
+Scenario: dump sanity check
+          Given I have a dumpfile
+          When I open the file
+          Then each line should follow a pattern
