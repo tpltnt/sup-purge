@@ -79,7 +79,13 @@ end
 #
 # * *Args* :
 #    - +messageids+ Array of Message-IDs to match
-def match_messageid_to_filename(messageids)
+#	 - +maildirs+ array of Maildirs to search in
+# * *Returns* :
+#   - hashmap of messageid => filename
+def match_messageid_to_filename(messageids, maildirs)
+	maildirs.each do |maildir|
+		puts maildir
+	end
 end
 
 # sanity check for given parameter
@@ -110,6 +116,9 @@ dump.close
 # delete dump
 File.delete(dumpfilename)
 
+match_messageid_to_filename(messagestobedeleted,maildirnames)
+
+exit 0
 # find messages & delete them
 # not really good performing algorithm, but works
 maildirnames.each do |maildir|
