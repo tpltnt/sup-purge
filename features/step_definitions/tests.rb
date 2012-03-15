@@ -4,9 +4,10 @@ World(Test::Unit::Assertions)
 
 
 dumpfilename = 'features/step_definitions/supdump'
+supdir = "~/.sup"
 
 Given /^I have a sup\-dir$/ do
-  pending # express the regexp above with the code you wish you had
+  assert( Dir.exists?(supdir) )
 end
 
 When /^i call the script with the sup\-dir as an argument$/ do
@@ -18,7 +19,7 @@ Then /^i should be able to find the maildirs$/ do
 end
 
 Given /^I have a dumpfile$/ do
-  pending # express the regexp above with the code you wish you had
+  assert( File.exists?(dumpfilename)  )
 end
 
 When /^I open the file$/ do
