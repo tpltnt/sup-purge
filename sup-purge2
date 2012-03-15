@@ -92,6 +92,21 @@ def match_messageid_to_filename(messageids, maildirs)
 	end
 end
 
+# delete files from disk
+#
+# * *Args* :
+#   - +filelist+ list of files to be deleted
+# * *Returns* :
+#   - number of files deleted
+# note: resturning the number of files is just an easy check, but is not that
+# helpfull to determine which files still remained in case of errors.
+def purge_files_from_disk(filelist)
+  filelist.each do |filename|
+    # delete file from dist
+    # killcount++
+  end
+end
+
 # sanity check for given parameter
 if 1 != ARGV.length then
   puts "usage: sup-purge2 <supdir>"
