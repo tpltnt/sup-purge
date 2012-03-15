@@ -83,8 +83,12 @@ end
 # * *Returns* :
 #   - hashmap of messageid => filename
 def match_messageid_to_filename(messageids, maildirs)
+        # go through each maildir/{cur,new,tmp}
 	maildirs.each do |maildir|
 		puts maildir
+                # put each file into a list
+                # iterate over each file until "Message-ID" is found
+                # store messageid => filename
 	end
 end
 
