@@ -4,10 +4,10 @@ World(Test::Unit::Assertions)
 
 
 dumpfilename = 'features/step_definitions/supdump'
-supdir = "~/.sup"
+supdir = '../../.sup'
 
 Given /^I have a sup\-dir$/ do
-  assert( Dir.exists?(supdir) )
+  assert( File.directory?(supdir) )
 end
 
 When /^i call the script with the sup\-dir as an argument$/ do
